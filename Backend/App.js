@@ -2,6 +2,8 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const app = express();
+const cors = require('cors');
+app.use(cors());
 
 //Connect the data base
 mongoose.connect('mongodb+srv://kaanu2000:Kq9wAdWIlzt5H36W@cluster.r6hvnlt.mongodb.net/', { useNewUrlParser: true, useUnifiedTopology: true });
