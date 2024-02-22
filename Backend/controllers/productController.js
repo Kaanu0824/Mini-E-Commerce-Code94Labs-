@@ -13,21 +13,60 @@ const getAllProducts = async (req, res) => {
 
 
 // Search Product SKU & Name
-const searchProducts = async (req, res) => {
-  const searchTerm = req.query.q; // Assuming the search term is provided as a query parameter
+
+// const searchProducts = async (req, res) => {
+//   const searchTerm = req.query.q; // Assuming the search term is provided as a query parameter
+
+//   try {
+//     const products = await Product.find({
+//       productName: { $regex: new RegExp(searchTerm, 'i') }, // Case-insensitive search for product name
+//     });
+
+//     res.json(products);
+//   } catch (error) {
+//     console.error(error);
+//     res.status(500).json({ message: 'Internal Server Error' });
+//   }
+// };
+
+// const searchProductsById = async (req, res) => {
+//   const sku = req.query.sku;
+
+//   try {
+//     const products = await Product.find({
+//       sku: { $regex: new RegExp(sku, 'i') },
+//     });
+
+//     if (!products || products.length === 0) {
+//       return res.status(404).json({ message: 'No products found' });
+//     }
+
+//     res.json(products);
+//   } catch (error) {
+//     console.error(error);
+//     res.status(500).json({ message: 'Internal Server Error' });
+//   }
+// };
+
+
+//Get Product
+
+const getProductById = async (req, res) => {
+  const productId = req.params.id;
 
   try {
-    const products = await Product.find({
-      productName: { $regex: new RegExp(searchTerm, 'i') }, // Case-insensitive search for product name
-    });
+    const product = await Product.findById(productId);
 
-    res.json(products);
+    if (!product) {
+      return res.status(404).json({ message: 'Product not found' });
+    }
+
+    res.json(product);
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: 'Internal Server Error' });
   }
 };
-
 
 // Create a new product
 const createProduct = async (req, res) => {
@@ -104,7 +143,9 @@ const deleteProductById = async (req, res) => {
 
 module.exports = {
   getAllProducts,
-  searchProducts,
+  getProductById,
+  // searchProductsById,
+  //searchProducts,
   createProduct,
   updateProductById,
   deleteProductById,
