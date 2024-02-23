@@ -48,7 +48,7 @@ const ProductList = () => {
        {/* SECOUND LINE  */}
       <Box display="flex" alignItems="center" justifyContent="space-between" mb={2}>
       <Typography variant="h4"> PRODUCT </Typography>
-        <Box></Box> 
+        <Box></Box>
       </Box>
 
       {/* THIRD LINE  */}
