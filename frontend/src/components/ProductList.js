@@ -69,7 +69,7 @@ const ProductList = () => {
                 Search
             </Button>
 
-            <Button variant="contained" sx={{ backgroundColor: '#001EB9' , width: '200px', height: '48px'  }}>
+            <Button variant="contained" sx={{ backgroundColor: '#001EB9' , width: '200px', height: '48px'  }}> 
                 New Product
             </Button>
 
