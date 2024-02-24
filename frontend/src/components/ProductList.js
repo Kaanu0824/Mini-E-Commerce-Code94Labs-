@@ -29,6 +29,22 @@ const ProductList = () => {
     product.productName.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
+  const createEdit = (productId) => {
+    // Navigate to the update product page using the product ID
+    window.location.href = `/update/${productId}`;
+  };
+
+  const deleteProductById = (productId) => {
+    // Navigate to the update product page using the product ID
+    axios.delete(`http://localhost:3000/api/products/${productId}`)
+        .then(response => {
+            // Redirect to the home page after successful deletion
+            window.location.href = "/";
+        })
+        .catch(error => console.log(error));
+};
+
+
   return (
     <Container>
 
@@ -97,9 +113,10 @@ const ProductList = () => {
             {filteredProducts.map(product => (
               <TableRow key={product._id}>
                 <TableCell>{product.sku}</TableCell>
-                <TableCell>{product.imageUrl}</TableCell>
+                <TableCell><img src='product.imageUrl'></img></TableCell>
                 <TableCell>{product.productName}</TableCell>
                 <TableCell>{product.productDescription}</TableCell>
+                <TableCell><button onClick={() => createEdit(product._id)}>Edit</button><button>favourites</button><button onClick={()=>deleteProductById(product._id)}>delete</button></TableCell>
               </TableRow>
             ))}
           </TableBody>
@@ -107,6 +124,7 @@ const ProductList = () => {
       </TableContainer>
     </Container>
   );
+
 };
 
 export default ProductList;
