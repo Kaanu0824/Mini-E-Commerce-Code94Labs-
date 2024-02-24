@@ -6,6 +6,8 @@ import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
+
 
 const ProductList = () => {
   const [products, setProducts] = useState([]);
@@ -45,6 +47,7 @@ const ProductList = () => {
 };
 
 
+
   return (
     <Container>
 
@@ -75,19 +78,26 @@ const ProductList = () => {
                 size="small"
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                sx={{ marginRight: 1 , width : '500px', backgroundColor: '#F7F7F7'}}
+                sx={{ marginRight: 1 , width : '400px', backgroundColor: '#F7F7F7'}}
             />
   
-            <Button  variant="contained" sx={{ backgroundColor: '#001EB9', marginRight: '200px' ,  borderRadius: '10px' }}>
+            <Button  variant="contained" sx={{ backgroundColor: '#001EB9', marginRight: '10px' ,  borderRadius: '10px' }}>
                 <IconButton size="small" style={{ color: '#FFFFFF' }}>
                 <SearchIcon />
                 </IconButton>
                 Search
             </Button>
 
-            <Button variant="contained" sx={{ backgroundColor: '#001EB9' , width: '200px', height: '48px'  }}> 
+            <Link to="/create" style={{ textDecoration: 'none' }}>
+            <Button variant="contained" sx={{ backgroundColor: '#001EB9' , width: '20px', height: '48px'  }}> 
+            New Product
+          </Button>
+            </Link>
+
+
+            {/* <Button variant="contained" sx={{ backgroundColor: '#001EB9' , width: '200px', height: '48px'  }}> 
                 New Product
-            </Button>
+            </Button> */}
 
             <div style={{ position: 'relative', display: 'inline-block' }}>
                 <StarIcon style={{ color: '#001EB9', marginLeft: '4px', width: '200px', height: '48px' }} />
@@ -112,11 +122,15 @@ const ProductList = () => {
           <TableBody>
             {filteredProducts.map(product => (
               <TableRow key={product._id}>
-                <TableCell>{product.sku}</TableCell>
-                <TableCell><img src='product.imageUrl'></img></TableCell>
-                <TableCell>{product.productName}</TableCell>
-                <TableCell>{product.productDescription}</TableCell>
-                <TableCell><button onClick={() => createEdit(product._id)}>Edit</button><button>favourites</button><button onClick={()=>deleteProductById(product._id)}>delete</button></TableCell>
+                  <TableCell>{product.sku}</TableCell>
+                  <TableCell><img src='product.imageUrl'></img></TableCell>
+                  <TableCell>{product.productName}</TableCell>
+                  <TableCell>{product.productDescription}</TableCell>
+                  <TableCell>
+                      <button onClick={() => createEdit(product._id)}>Edit</button>
+                      <button>favourites</button>
+                      <button onClick={()=>deleteProductById(product._id)}>delete</button>
+                  </TableCell>
               </TableRow>
             ))}
           </TableBody>
