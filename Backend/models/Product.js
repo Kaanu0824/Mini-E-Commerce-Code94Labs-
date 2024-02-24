@@ -8,6 +8,7 @@ const productSchema = new mongoose.Schema({
     productDescription: { type: String, required: true },
     favorites: { type: Boolean, default: false },
     imageUrl: { type: String },
+    searchProductsById: {type:String}
 });
 
 const product = mongoose.model('product', productSchema);

@@ -29,24 +29,24 @@ const getAllProducts = async (req, res) => {
 //   }
 // };
 
-// const searchProductsById = async (req, res) => {
-//   const sku = req.query.sku;
+const searchProductsById = async (req, res) => {
+  const sku = req.query.sku;
 
-//   try {
-//     const products = await Product.find({
-//       sku: { $regex: new RegExp(sku, 'i') },
-//     });
+  try {
+    const products = await Product.find({
+      sku: { $regex: new RegExp(sku, 'i') },
+    });
 
-//     if (!products || products.length === 0) {
-//       return res.status(404).json({ message: 'No products found' });
-//     }
+    if (!products || products.length === 0) {
+      return res.status(404).json({ message: 'No products found' });
+    }
 
-//     res.json(products);
-//   } catch (error) {
-//     console.error(error);
-//     res.status(500).json({ message: 'Internal Server Error' });
-//   }
-// };
+    res.json(products);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Internal Server Error' });
+  }
+};
 
 
 //Get Product
@@ -94,7 +94,7 @@ const createProduct = async (req, res) => {
 // Update a product by ID
 const updateProductById = async (req, res) => {
   const productId = req.params.id;
-  const { sku, quantity, productName, productDescription, favorites, imageUrl } = req.body;
+  const { sku, quantity, productName, productDescription, favorites, imageUrl, searchProductsById } = req.body;
 
   try {
     const updatedProduct = await Product.findByIdAndUpdate(
@@ -105,6 +105,7 @@ const updateProductById = async (req, res) => {
         productDescription,
         favorites,
         imageUrl,
+        searchProductsById,
       },
       { new: true }
     );
@@ -144,7 +145,7 @@ const deleteProductById = async (req, res) => {
 module.exports = {
   getAllProducts,
   getProductById,
-  // searchProductsById,
+  searchProductsById,
   //searchProducts,
   createProduct,
   updateProductById,

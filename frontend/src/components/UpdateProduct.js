@@ -75,7 +75,6 @@ const UpdateProduct = () => {
 
       </Box>
 
-      <form>
 
       <TextField
           label="SKU"
@@ -149,7 +148,7 @@ const UpdateProduct = () => {
           onChange={(e) => setImageUrl(e.target.value)}
         />
 
-        <div style={{ textAlign: 'right' , marginTop:'20px' }}>
+        <div style={{ textAlign: 'right' , marginTop:'20px' , textAlign: 'right'}}>
           <Button
             variant="contained"
             color="primary"
@@ -158,7 +157,7 @@ const UpdateProduct = () => {
             Save Changes
           </Button>
         </div>
-      </form>
+      
     </Container>
   );
 };
