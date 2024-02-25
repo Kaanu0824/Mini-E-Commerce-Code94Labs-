@@ -54,7 +54,7 @@ const CreateProduct = () => {
             fullWidth
             margin="normal"
             value={sku}
-            sx={{ width: 395, height: 60}}
+            sx={{ width: 395, height: 60 , backgroundColor: '#F7F7F7'}}
             onChange={(e) => setSku(e.target.value)}
           /> 
 
@@ -66,13 +66,15 @@ const CreateProduct = () => {
                     margin="normal"
                     value={productName}
                     onChange={(e) => setProductName(e.target.value)}
-                    sx={{ marginRight: 2 }}
+                    sx={{ marginRight: 2 , backgroundColor: '#F7F7F7' }}
+                   
                   />
                   <TextField
                     label="QTY"
                     variant="outlined"
                     fullWidth
                     margin="normal"
+                    sx={{backgroundColor: '#F7F7F7'}}
                     value={quantity}
                     onChange={(e) => setQuantity(e.target.value)}
                   />
@@ -86,6 +88,7 @@ const CreateProduct = () => {
           rows={4}
           margin="normal"
           value={productDescription}
+          sx={{ backgroundColor: '#F7F7F7' }}
           onChange={(e) => setProductDescription(e.target.value)}
         />
           
@@ -98,6 +101,7 @@ const CreateProduct = () => {
           rows={5}
           margin="normal"
           value={imageUrl}
+          sx={{backgroundColor: '#F7F7F7' }}
           onChange={(e) => setImageUrl(e.target.value)}
         />
         
