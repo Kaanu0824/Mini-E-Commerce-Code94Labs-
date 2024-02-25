@@ -29,6 +29,7 @@ const getAllProducts = async (req, res) => {
 //   }
 // };
 
+
 const searchProductsById = async (req, res) => {
   const sku = req.query.sku;
 
