@@ -51,16 +51,16 @@ const ProductList = () => {
 
       {/* First Line */}
       <Box display="flex" alignItems="center" justifyContent="space-between" mb={2}>
-      <Typography variant="h4" gutterBottom>
+        <Typography variant="h4" gutterBottom>
+          
+        </Typography>
+        <Box display="flex" alignItems="center">
+          <Typography variant="h6">{admin.name}</Typography>
+          <KeyboardArrowDownIcon /> 
+          <Avatar src={admin.logoUrl} alt={admin.name} sx={{ width: 60, height: 60, marginLeft: 2, backgroundColor: '#001EB9' }} />
         
-      </Typography>
-      <Box display="flex" alignItems="center">
-        <Typography variant="h6">{admin.name}</Typography>
-        <KeyboardArrowDownIcon /> 
-        <Avatar src={admin.logoUrl} alt={admin.name} sx={{ width: 60, height: 60, marginLeft: 2, backgroundColor: '#001EB9' }} />
-       
+        </Box>
       </Box>
-    </Box>
 
        {/* SECOUND LINE  */}
       <Box display="flex" alignItems="center" justifyContent="space-between" mb={2}>
