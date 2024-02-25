@@ -1,11 +1,9 @@
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
-import SearchIcon from '@mui/icons-material/Search';
-import StarIcon from '@mui/icons-material/Star';
 import { Avatar, Box, Container, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, TextField, Typography } from '@mui/material';
 import Button from '@mui/material/Button';
-import IconButton from '@mui/material/IconButton';
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
+import { FaPen, FaStar, FaTrash } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 
 
@@ -72,51 +70,64 @@ const ProductList = () => {
 
       {/* THIRD LINE  */}
         <Box display="flex" alignItems="center" mb={2} >
-            <TextField
+            {/* <TextField
                 label="Search for product "
                 variant="outlined"
                 size="small"
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                sx={{ marginRight: 1 , width : '400px', backgroundColor: '#F7F7F7'}}
-            />
+                sx={{ marginRight: 1 , width : '400px', backgroundColor: '#F7F7F7'}}/>
+           
   
             <Button  variant="contained" sx={{ backgroundColor: '#001EB9', marginRight: '10px' ,  borderRadius: '10px' }}>
                 <IconButton size="small" style={{ color: '#FFFFFF' }}>
                 <SearchIcon />
                 </IconButton>
                 Search
-            </Button>
+            </Button>  */}
+
+            <TextField
+                label="Search for product"
+                variant="outlined"
+                size="small"
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                sx={{ marginRight: 1, width: '400px', backgroundColor: '#F7F7F7' }}
+              />
+              {/* <Button
+                variant="contained"
+                color="primary"
+                onClick={handleSearch} 
+              >
+                Search
+              </Button> */}
+
 
             <Link to="/create" style={{ textDecoration: 'none' }}>
-            <Button variant="contained" sx={{ backgroundColor: '#001EB9' , width: '20px', height: '48px'  }}> 
+            <Button  variant="contained" sx={{ backgroundColor: '#001EB9', marginRight: '40px' ,  borderRadius: '10px' }}>
             New Product
           </Button>
             </Link>
 
-
-            {/* <Button variant="contained" sx={{ backgroundColor: '#001EB9' , width: '200px', height: '48px'  }}> 
-                New Product
-            </Button> */}
-
-            <div style={{ position: 'relative', display: 'inline-block' }}>
+            {/* <div style={{ position: 'relative', display: 'inline-block' }}>
                 <StarIcon style={{ color: '#001EB9', marginLeft: '4px', width: '200px', height: '48px' }} />
                 <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)' , width: '50px', height: '50px', borderRadius: '10PX', border: '2px solid #001EB9' }}> </div>
-            </div>
+            </div> */}
+         </Box>
 
-
-        </Box>
+       
 
       
       <TableContainer component={Paper}>
         <Table>
           <TableHead>
             <TableRow>
-              <TableCell>SKU</TableCell>
-              <TableCell>Image</TableCell>
-              <TableCell>Product Name</TableCell>
-              <TableCell>Product Description</TableCell>
-              <TableCell>Action</TableCell>
+              <TableCell style={{ color: '#001EB9' }} >SKU</TableCell>
+              <TableCell style={{ color: '#001EB9' }}>Image</TableCell>
+              <TableCell style={{ color: '#001EB9' }}>Product Name</TableCell>
+              <TableCell style={{ color: '#001EB9' }}>quantity</TableCell>
+              {/* <TableCell>Product Description</TableCell> */}
+              {/* <TableCell>Action</TableCell> */}
             </TableRow>
           </TableHead>
           <TableBody>
@@ -125,11 +136,16 @@ const ProductList = () => {
                   <TableCell>{product.sku}</TableCell>
                   <TableCell><img src='product.imageUrl'></img></TableCell>
                   <TableCell>{product.productName}</TableCell>
-                  <TableCell>{product.productDescription}</TableCell>
+                  <TableCell>{product.quantity} </TableCell> 
+                  {/* <TableCell>{product.productDescription}</TableCell> */}
                   <TableCell>
-                      <button onClick={() => createEdit(product._id)}>Edit</button>
-                      <button>favourites</button>
-                      <button onClick={()=>deleteProductById(product._id)}>delete</button>
+                      {/* <button onClick={() => createEdit(product._id)}>Edit</button> */}
+
+                      <button onClick={()=>deleteProductById(product._id)}>
+                        <FaTrash style={{ color: '#001EB9' }}  />
+                      </button>
+                      <button onClick={() => createEdit(product._id)} ><FaPen  style={{ color: '#001EB9' }}  /></button>
+                      <button> <FaStar  style={{ color: '#001EB9' }} /></button>
                   </TableCell>
               </TableRow>
             ))}
