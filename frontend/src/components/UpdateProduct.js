@@ -9,6 +9,7 @@ const UpdateProduct = () => {
   const [productName, setProductName] = useState('');
   const[quantity,setQuantity]=useState('')
   const [sku, setSku] = useState('');
+  const [imageUrl,setImageUrl]=useState('')
   const [productDescription, setProductDescription] = useState('');
   const navigate = useNavigate(); // Use useNavigate instead of useHistory
 
@@ -17,8 +18,10 @@ const UpdateProduct = () => {
     axios.get(`http://localhost:3000/api/products/${id}`)
       .then(response => {
         setProduct(response.data);
+        setQuantity(response.data.quantity);
         setProductName(response.data.productName);
         setSku(response.data.sku);
+        setImageUrl(response.data.imageUrl);
         setProductDescription(response.data.productDescription);
       })
       .catch(error => console.error(error));
@@ -31,6 +34,7 @@ const UpdateProduct = () => {
         sku,
         productDescription,
         quantity,
+        imageUrl
       });
       window.location.href = "/";
     } catch (error) {
@@ -102,6 +106,17 @@ const UpdateProduct = () => {
           value={productDescription}
           onChange={(e) => setProductDescription(e.target.value)}
         />
+        <TextField
+          label="Image"
+          variant="outlined"
+          fullWidth
+          multiline
+          rows={5}
+          margin="normal"
+          value={imageUrl}
+          onChange={(e) => setImageUrl(e.target.value)}
+        />
+
         <Button
           variant="contained"
           color="primary"
