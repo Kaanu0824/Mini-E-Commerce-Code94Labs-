@@ -2,7 +2,8 @@ import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import { Avatar, Box, Button, Container, TextField, Typography } from '@mui/material';
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-import { useNavigate, useParams } from 'react-router-dom'; // Use useNavigate instead of useHistory
+import { FaAngleRight } from 'react-icons/fa';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 
 const UpdateProduct = () => {
   const { id } = useParams();
@@ -62,9 +63,18 @@ const UpdateProduct = () => {
                  </Box>
          </Box>
 
-      <Typography variant="h4" gutterBottom>
-        Edit Product
-      </Typography>
+      <Box display="flex" alignItems="center">
+
+        <Link to="/ProductList" style={{ textDecoration: 'none' }} sx={{ marginRight: 2}} >
+            <Typography variant="h4"  sx={{ width: 125, height: 60 , color: '#162427' }}> Product </Typography>   
+        </Link>
+
+        <Typography variant="h4" gutterBottom  sx={{ marginRight: 2}} >
+            <Typography variant="h4" sx={{ color: '#001EB9' }} >  <FaAngleRight style={{ color: '#001EB9' }}  /> edit Product</Typography> 
+        </Typography>
+
+      </Box>
+
       <form>
 
       <TextField
@@ -139,13 +149,15 @@ const UpdateProduct = () => {
           onChange={(e) => setImageUrl(e.target.value)}
         />
 
-        <Button
-          variant="contained"
-          color="primary"
-          onClick={handleUpdateProduct}
-        >
-          Update Product
-        </Button>
+        <div style={{ textAlign: 'right' , marginTop:'20px' }}>
+          <Button
+            variant="contained"
+            color="primary"
+            onClick={handleUpdateProduct}
+          >
+            Save Changes
+          </Button>
+        </div>
       </form>
     </Container>
   );

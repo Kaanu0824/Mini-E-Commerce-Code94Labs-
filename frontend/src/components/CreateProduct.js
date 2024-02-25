@@ -2,12 +2,15 @@ import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import { Avatar, Box, Button, Container, TextField, Typography } from '@mui/material';
 import axios from 'axios';
 import React, { useState } from 'react';
+import { FaAngleRight } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
 const CreateProduct = () => {
   const [productName, setProductName] = useState('');
   const [sku, setSku] = useState('');
   const [productDescription, setProductDescription] = useState('');
   const [imageUrl,setImageUrl]=useState('')
   const[quantity,setQuantity]=useState('')
+  
 
 
   const handleCreateProduct = async () => {
@@ -43,9 +46,18 @@ const CreateProduct = () => {
           
          </Box>
         </Box>
-      <Typography variant="h4" gutterBottom>
-        Add New Product
-      </Typography>
+
+        <Box display="flex" alignItems="center">
+
+            <Link to="/ProductList" style={{ textDecoration: 'none' }} sx={{ marginRight: 2}} >
+                <Typography variant="h4"  sx={{ width: 125, height: 60 , color: '#162427' }}> Product </Typography>   
+            </Link>
+
+            <Typography variant="h4" gutterBottom  sx={{ marginRight: 2}} >
+                 <Typography variant="h4" sx={{ color: '#001EB9' }} >  <FaAngleRight style={{ color: '#001EB9' }}  /> Add new Product </Typography> 
+            </Typography>
+
+        </Box>
       
      
         <TextField
@@ -105,13 +117,15 @@ const CreateProduct = () => {
           onChange={(e) => setImageUrl(e.target.value)}
         />
         
-        <Button
-          variant="contained"
-          color="primary"
-          onClick={handleCreateProduct}
-        >
-          Create Product
-        </Button>
+        < div style={{ textAlign: 'right' , marginTop:'20px' }}>
+          <Button
+            variant="contained"
+            color="primary"
+            onClick={handleCreateProduct}
+          >
+            Add Product
+          </Button>
+        </div>
       
     </Container>
   );
