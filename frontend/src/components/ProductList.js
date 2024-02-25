@@ -58,7 +58,6 @@ const ProductList = () => {
           <Typography variant="h6">{admin.name}</Typography>
           <KeyboardArrowDownIcon /> 
           <Avatar src={admin.logoUrl} alt={admin.name} sx={{ width: 60, height: 60, marginLeft: 2, backgroundColor: '#001EB9' }} />
-        
         </Box>
       </Box>
 
@@ -104,9 +103,9 @@ const ProductList = () => {
 
 
             <Link to="/create" style={{ textDecoration: 'none' }}>
-            <Button  variant="contained" sx={{ backgroundColor: '#001EB9', marginRight: '40px' ,  borderRadius: '10px' }}>
-            New Product
-          </Button>
+                <Button  variant="contained" sx={{ backgroundColor: '#001EB9', marginRight: '40px' ,  borderRadius: '10px' }}>
+                     New Product
+                </Button>
             </Link>
 
             {/* <div style={{ position: 'relative', display: 'inline-block' }}>
@@ -139,13 +138,19 @@ const ProductList = () => {
                   <TableCell>{product.quantity} </TableCell> 
                   {/* <TableCell>{product.productDescription}</TableCell> */}
                   <TableCell>
-                      {/* <button onClick={() => createEdit(product._id)}>Edit</button> */}
 
                       <button onClick={()=>deleteProductById(product._id)}>
                         <FaTrash style={{ color: '#001EB9' }}  />
                       </button>
-                      <button onClick={() => createEdit(product._id)} ><FaPen  style={{ color: '#001EB9' }}  /></button>
-                      <button> <FaStar  style={{ color: '#001EB9' }} /></button>
+
+                      <button onClick={() => createEdit(product._id)} > 
+                         <FaPen  style={{ color: '#001EB9' }}  />
+                      </button>
+
+                      <button> 
+                        <FaStar  style={{ color: '#001EB9' }} />
+                      </button>
+
                   </TableCell>
               </TableRow>
             ))}

@@ -2,12 +2,15 @@ import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import { Avatar, Box, Button, Container, TextField, Typography } from '@mui/material';
 import axios from 'axios';
 import React, { useState } from 'react';
+import { FaAngleRight } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
 const CreateProduct = () => {
   const [productName, setProductName] = useState('');
   const [sku, setSku] = useState('');
   const [productDescription, setProductDescription] = useState('');
   const [imageUrl,setImageUrl]=useState('')
   const[quantity,setQuantity]=useState('')
+  
 
 
   const handleCreateProduct = async () => {
@@ -43,9 +46,18 @@ const CreateProduct = () => {
           
          </Box>
         </Box>
-      <Typography variant="h4" gutterBottom>
-        Add New Product
-      </Typography>
+
+        <Box display="flex" alignItems="center">
+
+            <Link to="/ProductList" style={{ textDecoration: 'none' }} sx={{ marginRight: 2}} >
+                <Typography variant="h4"  sx={{ width: 125, height: 60 , color: '#162427' }}> Product </Typography>   
+            </Link>
+
+            <Typography variant="h4" gutterBottom  sx={{ marginRight: 2}} >
+                 <Typography variant="h4" sx={{ color: '#001EB9' }} >  <FaAngleRight style={{ color: '#001EB9' }}  /> Add new Product </Typography> 
+            </Typography>
+
+        </Box>
       
      
         <TextField
@@ -54,7 +66,7 @@ const CreateProduct = () => {
             fullWidth
             margin="normal"
             value={sku}
-            sx={{ width: 395, height: 60}}
+            sx={{ width: 395, height: 60 , backgroundColor: '#F7F7F7'}}
             onChange={(e) => setSku(e.target.value)}
           /> 
 
@@ -66,13 +78,15 @@ const CreateProduct = () => {
                     margin="normal"
                     value={productName}
                     onChange={(e) => setProductName(e.target.value)}
-                    sx={{ marginRight: 2 }}
+                    sx={{ marginRight: 2 , backgroundColor: '#F7F7F7' }}
+                   
                   />
                   <TextField
                     label="QTY"
                     variant="outlined"
                     fullWidth
                     margin="normal"
+                    sx={{backgroundColor: '#F7F7F7'}}
                     value={quantity}
                     onChange={(e) => setQuantity(e.target.value)}
                   />
@@ -86,6 +100,7 @@ const CreateProduct = () => {
           rows={4}
           margin="normal"
           value={productDescription}
+          sx={{ backgroundColor: '#F7F7F7' }}
           onChange={(e) => setProductDescription(e.target.value)}
         />
           
@@ -98,16 +113,19 @@ const CreateProduct = () => {
           rows={5}
           margin="normal"
           value={imageUrl}
+          sx={{backgroundColor: '#F7F7F7' }}
           onChange={(e) => setImageUrl(e.target.value)}
         />
         
-        <Button
-          variant="contained"
-          color="primary"
-          onClick={handleCreateProduct}
-        >
-          Create Product
-        </Button>
+        < div style={{ textAlign: 'right' , marginTop:'20px' }}>
+          <Button
+            variant="contained"
+            color="primary"
+            onClick={handleCreateProduct}
+          >
+            Add Product
+          </Button>
+        </div>
       
     </Container>
   );

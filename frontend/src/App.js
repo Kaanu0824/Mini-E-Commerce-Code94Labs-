@@ -17,6 +17,7 @@ function App() {
         </Link> */}
         <Routes>
           <Route path="/create" element={<CreateProduct />} />
+          <Route path="/ProductList" element={<ProductList/>} />
           <Route path="/update/:id" element={<UpdateProduct />} />
           <Route index element={<ProductList />} />
         </Routes>
