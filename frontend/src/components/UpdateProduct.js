@@ -1,4 +1,4 @@
-import { Button, Container, TextField, Typography } from '@mui/material';
+import { Box, Button, Container, TextField, Typography } from '@mui/material';
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom'; // Use useNavigate instead of useHistory
@@ -7,6 +7,7 @@ const UpdateProduct = () => {
   const { id } = useParams();
   const [product, setProduct] = useState({});
   const [productName, setProductName] = useState('');
+  const[quantity,setQuantity]=useState('')
   const [sku, setSku] = useState('');
   const [productDescription, setProductDescription] = useState('');
   const navigate = useNavigate(); // Use useNavigate instead of useHistory
@@ -29,6 +30,7 @@ const UpdateProduct = () => {
         productName,
         sku,
         productDescription,
+        quantity,
       });
       window.location.href = "/";
     } catch (error) {
@@ -39,18 +41,11 @@ const UpdateProduct = () => {
   return (
     <Container>
       <Typography variant="h4" gutterBottom>
-        Update Product
+        Edit Product
       </Typography>
       <form>
-        <TextField
-          label="Product Name"
-          variant="outlined"
-          fullWidth
-          margin="normal"
-          value={productName}
-          onChange={(e) => setProductName(e.target.value)}
-        />
-        <TextField
+
+      <TextField
           label="SKU"
           variant="outlined"
           fullWidth
@@ -58,6 +53,45 @@ const UpdateProduct = () => {
           value={sku}
           onChange={(e) => setSku(e.target.value)}
         />
+        
+        {/* <TextField
+          label="Product Name"
+          variant="outlined"
+          fullWidth
+          margin="normal"
+          value={productName}
+          onChange={(e) => setProductName(e.target.value)}
+        />
+
+         <TextField
+          label="QTY"
+          variant="outlined"
+          fullWidth
+          margin="normal"
+          value={quantity}
+          onChange={(e) => setProductName(e.target.value)}
+        /> */}
+
+      <Box display="flex" alignItems="center">
+                  <TextField
+                    label="Product Name"
+                    variant="outlined"
+                    fullWidth
+                    margin="normal"
+                    value={productName}
+                    onChange={(e) => setProductName(e.target.value)}
+                    sx={{ marginRight: 2 }}
+                  />
+                  <TextField
+                    label="QTY"
+                    variant="outlined"
+                    fullWidth
+                    margin="normal"
+                    value={quantity}
+                    onChange={(e) => setQuantity(e.target.value)}
+                  />
+                </Box>
+        
         <TextField
           label="Product Description"
           variant="outlined"
