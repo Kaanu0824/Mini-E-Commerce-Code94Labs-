@@ -1,4 +1,5 @@
-import { Button, Container, TextField, Typography } from '@mui/material';
+import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
+import { Avatar, Box, Button, Container, TextField, Typography } from '@mui/material';
 import axios from 'axios';
 import React, { useState } from 'react';
 const CreateProduct = () => {
@@ -24,28 +25,59 @@ const CreateProduct = () => {
     }
   };
 
+  const admin = {
+    name: "Admin",
+    logoUrl: "admin-logo-url.png" // Provide the URL for the admin logo image
+  };
+
   return (
     <Container>
+
+        <Box display="flex" alignItems="center" justifyContent="space-between" mb={2}>
+          <Typography variant="h4" gutterBottom>
+          </Typography>
+          <Box display="flex" alignItems="center">
+            <Typography variant="h6">{admin.name}</Typography>
+            <KeyboardArrowDownIcon /> 
+            <Avatar src={admin.logoUrl} alt={admin.name} sx={{ width: 60, height: 60, marginLeft: 2, backgroundColor: '#001EB9' }} />
+          
+         </Box>
+        </Box>
       <Typography variant="h4" gutterBottom>
-        Create New Product
+        Add New Product
       </Typography>
-      <form>
+      
+     
         <TextField
-          label="Product Name"
-          variant="outlined"
-          fullWidth
-          margin="normal"
-          value={productName}
-          onChange={(e) => setProductName(e.target.value)}
-        />
-        <TextField
-          label="SKU"
-          variant="outlined"
-          fullWidth
-          margin="normal"
-          value={sku}
-          onChange={(e) => setSku(e.target.value)}
-        />
+            label="SKU"
+            variant="outlined"
+            fullWidth
+            margin="normal"
+            value={sku}
+            sx={{ width: 395, height: 60}}
+            onChange={(e) => setSku(e.target.value)}
+          /> 
+
+          <Box display="flex" alignItems="center">
+                  <TextField
+                    label="Product Name"
+                    variant="outlined"
+                    fullWidth
+                    margin="normal"
+                    value={productName}
+                    onChange={(e) => setProductName(e.target.value)}
+                    sx={{ marginRight: 2 }}
+                  />
+                  <TextField
+                    label="QTY"
+                    variant="outlined"
+                    fullWidth
+                    margin="normal"
+                    value={quantity}
+                    onChange={(e) => setQuantity(e.target.value)}
+                  />
+                </Box>
+       
         <TextField
           label="Product Description"
           variant="outlined"
@@ -56,16 +88,7 @@ const CreateProduct = () => {
           value={productDescription}
           onChange={(e) => setProductDescription(e.target.value)}
         />
-              <TextField
-          label="QTY"
-          variant="outlined"
-          fullWidth
-          multiline
-          rows={4}
-          margin="normal"
-          value={quantity}
-          onChange={(e) => setQuantity(e.target.value)}
-        />
+          
               
         <TextField
           label="Image"
@@ -77,6 +100,7 @@ const CreateProduct = () => {
           value={imageUrl}
           onChange={(e) => setImageUrl(e.target.value)}
         />
+        
         <Button
           variant="contained"
           color="primary"
@@ -84,7 +108,7 @@ const CreateProduct = () => {
         >
           Create Product
         </Button>
-      </form>
+      
     </Container>
   );
 };
