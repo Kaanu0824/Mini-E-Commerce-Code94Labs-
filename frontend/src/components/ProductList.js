@@ -45,6 +45,26 @@ const ProductList = () => {
 };
 
 
+//Favourite 
+const addFav = (productId) => {
+
+  const updatedProducts = products.map(product => {
+    if (product._id === productId) {
+      product.favorites = !product.favorites;
+      axios.put(`http://localhost:3000/api/products/favorites/${productId}`, {
+        favorites: product.favorites
+      })
+      .then(response => {
+        console.log("updated")
+      })
+      .catch(error => {
+        console.error(error);
+      });
+    }
+  });
+}
+
+
 
   return (
     <Container>
@@ -69,22 +89,7 @@ const ProductList = () => {
 
       {/* THIRD LINE  */}
         <Box display="flex" alignItems="center" mb={2} >
-            {/* <TextField
-                label="Search for product "
-                variant="outlined"
-                size="small"
-                value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
-                sx={{ marginRight: 1 , width : '400px', backgroundColor: '#F7F7F7'}}/>
            
-  
-            <Button  variant="contained" sx={{ backgroundColor: '#001EB9', marginRight: '10px' ,  borderRadius: '10px' }}>
-                <IconButton size="small" style={{ color: '#FFFFFF' }}>
-                <SearchIcon />
-                </IconButton>
-                Search
-            </Button>  */}
-
             <TextField
                 label="Search for product"
                 variant="outlined"
@@ -96,7 +101,7 @@ const ProductList = () => {
               {/* <Button
                 variant="contained"
                 color="primary"
-                onClick={handleSearch} 
+                onChange={(e) => setSearchTerm(e.target.value)}
               >
                 Search
               </Button> */}
@@ -108,10 +113,11 @@ const ProductList = () => {
                 </Button>
             </Link>
 
-            {/* <div style={{ position: 'relative', display: 'inline-block' }}>
-                <StarIcon style={{ color: '#001EB9', marginLeft: '4px', width: '200px', height: '48px' }} />
-                <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)' , width: '50px', height: '50px', borderRadius: '10PX', border: '2px solid #001EB9' }}> </div>
-            </div> */}
+            <Link to="/favorites" style={{ textDecoration: 'none' }}>
+              <Button variant="contained" sx={{ backgroundColor: '#001EB9', marginRight: '40px' ,  borderRadius: '10px' }} >
+                Favorites
+              </Button>
+            </Link>
          </Box>
 
        
@@ -139,15 +145,15 @@ const ProductList = () => {
                   {/* <TableCell>{product.productDescription}</TableCell> */}
                   <TableCell>
 
-                      <button onClick={()=>deleteProductById(product._id)}>
+                      <button style={{ marginRight: '10px' }}  onClick={()=>deleteProductById(product._id)}>
                         <FaTrash style={{ color: '#001EB9' }}  />
                       </button>
 
-                      <button onClick={() => createEdit(product._id)} > 
+                      <button style={{ marginRight: '10px' }}  onClick={() => createEdit(product._id)} > 
                          <FaPen  style={{ color: '#001EB9' }}  />
                       </button>
 
-                      <button> 
+                      <button  style={{ marginRight: '10px' }}  onClick={() => addFav(product._id)} > 
                         <FaStar  style={{ color: '#001EB9' }} />
                       </button>
 

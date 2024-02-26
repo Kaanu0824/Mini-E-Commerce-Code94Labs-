@@ -2,6 +2,7 @@ import { Container, CssBaseline } from '@mui/material';
 import React from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import CreateProduct from './components/CreateProduct';
+import Favorites from './components/Favorites';
 import ProductList from './components/ProductList';
 import UpdateProduct from './components/UpdateProduct';
 
@@ -20,6 +21,7 @@ function App() {
           <Route path="/ProductList" element={<ProductList/>} />
           <Route path="/update/:id" element={<UpdateProduct />} />
           <Route index element={<ProductList />} />
+          <Route path="/favorites" element={ <Favorites/>} />
         </Routes>
       </Container>
     </BrowserRouter>
