@@ -8,7 +8,7 @@ router.get('/:id', productController.getProductById);
 // router.get('/search', productController.searchProductsById);
 router.post('/', productController.createProduct);
 router.put('/:id', productController.updateProductById);
+router.put('/favorites/:id', productController.updateProductFavoritesById);
 router.delete('/:id', productController.deleteProductById);
-
 
 module.exports = router;

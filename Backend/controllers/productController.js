@@ -120,6 +120,30 @@ const updateProductById = async (req, res) => {
   }
 };
 
+// Update a product by ID
+const updateProductFavoritesById = async (req, res) => {
+  const productId = req.params.id;
+  const { favorites} = req.body;
+
+  try {
+    const updatedProduct = await Product.findByIdAndUpdate(
+      productId,
+      {
+        favorites,
+      },
+      { new: true }
+    );
+
+    if (!updatedProduct) {
+      return res.status(404).json({ message: 'Product not found' });
+    }
+    res.json(updatedProduct);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Internal Server Error' });
+  }
+};
+
 // Delete a product by ID
 const deleteProductById = async (req, res) => {
   const productId = req.params.id;
@@ -149,4 +173,5 @@ module.exports = {
   createProduct,
   updateProductById,
   deleteProductById,
+  updateProductFavoritesById
 };
